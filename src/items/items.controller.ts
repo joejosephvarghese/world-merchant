@@ -19,6 +19,11 @@ export class ItemsController {
     return this.items.findAll();
   }
 
+  @Get('count')
+  count() {
+    return this.items.count();
+  }
+
   @Get(':id')
   findOne(@Param('id', ParseIntPipe) id: number) {
     return this.items.findOne(id);

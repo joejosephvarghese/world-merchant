@@ -10,6 +10,11 @@ export class ItemsService {
     return this.prisma.item.findMany({ orderBy: { id: 'asc' } });
   }
 
+  async count(): Promise<{ count: number }> {
+    const count = await this.prisma.item.count();
+    return { count };
+  }
+
   async findOne(id: number): Promise<Item> {
     const item = await this.prisma.item.findUnique({ where: { id } });
     if (!item) throw new NotFoundException(`Item ${id} not found`);
